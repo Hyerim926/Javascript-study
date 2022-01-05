@@ -15,12 +15,12 @@
 
 - user 객체에 직접 속한 프로퍼티에 대해서는 복사해 완전히 새로운 데이터가 만들어진 반면, 한 단계 더 들어간 `urls`의 내부 프로퍼티들은 기존 데이터를 그대로 참조함
 
-[중첩된 객체에 대한 깊은 복사]()
+[중첩된 객체에 대한 깊은 복사](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/nestedObjectDeepCopy.js)
 - 어떤 객체를 복사할 때 객체 내부의 모든 값을 복사해서 완전히 새로운 데이터를 만들고자 할 때, 객체의 프로퍼티 중 그 값이 `기본형 데이터`일 경우에는 그대로 복사하면 되지만, `참조형 데이터`는 다시 그 내부의 프로퍼티들을 복사해야함.
 
-[copyObject()를 깊은 복사 방식으로 바꾸기]()
+[copyObject()를 깊은 복사 방식으로 바꾸기](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/copyObjectDeep.js)
 - `hasOwnProperty`메서드를 활용해 프로토타입 체이닝을 통해 상속된 프로퍼티를 복사하지 않게끔 할 수 있으나, ES5의 getter/setter를 복사하는 방법은 아쉽게도 ES6의 `Object.getOwnPropertyDescriptor` 또는 ES2017의 `Object.getOwnPropertyDescriptors`외에는 방법이 없음
 
-[JSON을 활용한 간단한 깊은 복사]()
+[JSON을 활용한 간단한 깊은 복사](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/JSONDeepCopy.js)
 
 
