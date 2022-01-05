@@ -21,6 +21,6 @@
 [copyObject()를 깊은 복사 방식으로 바꾸기](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/copyObjectDeep.js)
 - `hasOwnProperty`메서드를 활용해 프로토타입 체이닝을 통해 상속된 프로퍼티를 복사하지 않게끔 할 수 있으나, ES5의 getter/setter를 복사하는 방법은 아쉽게도 ES6의 `Object.getOwnPropertyDescriptor` 또는 ES2017의 `Object.getOwnPropertyDescriptors`외에는 방법이 없음
 
-[JSON을 활용한 간단한 깊은 복사](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/JSONDeepCopy.js)
+[JSON을 활용한 간단한 깊은 복사](https://github.com/Hyerim926/Javascript-study/blob/main/01_%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/05_%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4/jsonDeepCopy.js)
 
 
