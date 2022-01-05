@@ -17,12 +17,10 @@ var user = {
 };
 
 var user2 = copyObject(user);
-
-user2.name = 'forest';
-console.log(user.name === user2.name); // false
+user2.urls = copyObject(user.urls);
 
 user.urls.portfolio = 'http://portfolio';
 console.log(user.urls.portfolio === user2.urls.portfolio); // false
 
-user.urls.blog = '';
-console.log(user.urls.blog === user2.urls.blog); // true
+user2.urls.blog = '';
+console.log(user.urls.blog === user2.urls.blog); // false
