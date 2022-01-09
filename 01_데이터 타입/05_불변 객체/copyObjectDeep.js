@@ -4,6 +4,7 @@ var copyObjectDeep = function (target) {
     * 객체가 아닌 경우 라인12번과 같이 target을 그대로 지정함
     * 객체를 복사한 다음에는 원본과 사본이 서로 완전히 다른 객체를 참조하게 되어 어느 쪽의 프로퍼티를 변경하더라도 다른 쪽에 영향을 주지 않음
      */
+    // target이 object이거나 target이 null 아닐 경우 복사
     if (typeof target === 'object' && target !== null) { // typeof 명령어가 null에 대해서도 object를 반환하기 때문, 자스의 자체 버그
         for (var prop in target) {
             result[prop] = copyObject(target[prop]);
