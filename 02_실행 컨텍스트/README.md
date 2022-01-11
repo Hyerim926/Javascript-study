@@ -109,14 +109,15 @@ function A() {
 -> `outerEnvironmentReference`는 연결리스트(Linked List)의 형태를 띔. '선언시점의 LexicalEnvironment' 를 계속 찾아 올라가면 마지막엔 전역 컨텍스트의 LexicalEnvironment가 있을 것.\
        또한, 각 outerEnvironmentReference는 오직 자신이 선언된 시점의 LexicalEnvironment만 참조하고 있으므로 가장 가까운 요소부터 차례대로만 접근할 수 있고, 다른 순서로 접근하는 것은 불가능\
        따라서, 여러 스코프에서 동일한 식별자를 선언한 경우, 무조건 스코프 체인 상에서 가장 먼저 발견된 식별자에만 접근 가능함.\
-       [예제코드]()
+       [예제코드](https://github.com/Hyerim926/Javascript-study/blob/main/02_%EC%8B%A4%ED%96%89%20%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/scopeChain.js)
 - 변수 은닉화
     - 스코프 체인 상에 있는 변수라고 해서 무조건 접근 가능하지 않음
     - 전역공간의 a 변수와 inner 함수 내부의 a 변수는 다르고, inner 함수 내부에서는 전역공간의 a 변수에 접근 불가
 > 전역변수와 지역변수
 1. 전역변수
-전역 공간에서 선언한 변수. 예제코드에서는 변수 a와 outer() 함수.
+전역 공간에서 선언한 변수. 예제코드에서는 변수 a와 outer() 함수.\
 cf. 함수 선언문과 함수 표현식에서 배웠던 함수 선언문의 약점 또한 선언문이 전역변수이기 때문. 전역변수 사용을 최소화하자.
 2. 지역변수
 함수 내부에서 선언한 변수. 예제코드에서는 outer() 내부에서 선언한 inner와 inner 함수 내부에서 선언한 변수 a
 ## ThisBinding
+실행 컨텍스트의 thisBinding에는 this로 지정된 객체가 저장되며, 실행 컨텍스트 활성화 당시에 this가 지정되지 않은 경우 this에는 전역 객체가 저장됨. 그 밖에는 함수 호출 방법에 따라 this에 저장되는 대상 다름.
