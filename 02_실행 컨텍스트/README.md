@@ -6,10 +6,10 @@
 - 외부 환경 정보 구성
 - `this`값 설정
 ### 스택과 큐
-`스택` 출입구가 하나 뿐, 깊은 우물같은 데이터 구조. (in) abcd -> (out) dcba
+`스택` 출입구가 하나 뿐, 깊은 우물같은 데이터 구조. (in) abcd -> (out) dcba\
 `큐` 양쪽이 모두 열려있음. 한 쪽은 입력, 한 쪽은 출력 담당 (in) abcd -> (out) abcd
 ### 작동 원리
-동일한 환경에 있는 코드들을 실행할 때 필요한 환경 정보들을 모아 컨텍스트를 구성함. -> 이를 `콜 스택`에 쌓아올렸다가, 가장 상위에 있는 코드들을 실행함.
+동일한 환경에 있는 코드들을 실행할 때 필요한 환경 정보들을 모아 컨텍스트를 구성함. -> 이를 `콜 스택`에 쌓아올렸다가, 가장 상위에 있는 코드들을 실행함.\
 `동일한 환경` 하나의 실행 컨텍스트르 구성할 수 있는 방법. 전역공간, eval() 함수, 함수 등이 존재. 가장 흔한 방법은 `함수 실행` 방법
 - 예제
 ```javascript
@@ -28,19 +28,19 @@ function outer() {
 outer();
 console.log(a); // 1
 ```
-=> `1번` 전역 컨텍스트(파일이 열리는 순간 활성화)가 콜 스택에 담김
-   `3번` outer() 컨텍스트 생성 후 콜 스택에 담음
-   `2번` inner() 컨테스트 생성 후 outer() 컨텍스트 코드 실행 중단 및 inner() 실행
-        inner() 내부에서 a 변수에 3 할당한 뒤 컨텍스트 종료
-   `3번` 중단되었던 outer() 재진행
-   `1번` outer()가 실행되어 a값 출력한 후에는 전역 컨텍스트도 제거됨
+=> `1번` 전역 컨텍스트(파일이 열리는 순간 활성화)가 콜 스택에 담김\
+   `3번` outer() 컨텍스트 생성 후 콜 스택에 담음\
+   `2번` inner() 컨테스트 생성 후 outer() 컨텍스트 코드 실행 중단 및 inner() 실행\
+        inner() 내부에서 a 변수에 3 할당한 뒤 컨텍스트 종료\
+   `3번` 중단되었던 outer() 재진행\
+   `1번` outer()가 실행되어 a값 출력한 후에는 전역 컨텍스트도 제거됨\
 ### 실행 컨텍스트에 담기는 정보
 - VariableEnvironment : 현재 컨텍스트 내의 식별자들에 대한 정보 + 외부 환경 정보. 선언 시점의 LexicalEnvironment의 스냅샷으로 변경사항은 반영 x
 - LexicalEnvironment : 처음에는 VariableEnvironment와 같지만 변경 사항이 실시간으로 반영됨
 - ThisBinding : this 식별자가 바라봐야 할 대상 객체
 ## VariableEnvironment
 - `LexicalEnvironment`와 같지만 _최초 실행시 스냅샷 유지_. 실행 컨텍스트 생성 시 `variableEnvironment`에 정보를 담음. 이걸 그대로 복사해 `LexicalEnvironment`를 생성하고 이후 이를 주로 활용
-- `VariableEnvironment`와 `LexicalEnvironment`의 내부는 `environmentRecord`와 `outer-EnvironmentReference`로 구성되어있 en
+- `VariableEnvironment`와 `LexicalEnvironment`의 내부는 `environmentRecord`와 `outer-EnvironmentReference`로 구성되어있음
 ## LexicalEnvironment
 > environmentRecord와 호이스팅
 - environmentRecord
@@ -52,7 +52,8 @@ cf. 전역 실행 컨텍스트 : window나 node.js의 global 객체 등과 같�
 수집대상(변수의 선언부, 함수 선언 전체)은 상단으로 끌어올리고 변수의 할당부는 원래 자리에 고정\
 함수 선언문은 함수명으로 선언한 변수에 함수를 할당함
 [예제코드]()
-> 함수 선언문과 함수 표현식\
+> 함수 선언문과 함수 표현식
+
 함수를 새롭게 정의할 때 쓰이는 방식
 1. 함수 선언문
 - function 정의부만 존재, 별도 할당 명령 x.
@@ -86,7 +87,7 @@ var c = function d() { /* .. */ } // 기명 함수 표현식. 변수명은 c, �
 c(); // 실행됨
 d(); // 에러 - c함수 내부에서는 작동함
 ```
-[호이스팅된 함수 선언문과 함수 표현식]()
+[호이스팅된 함수 선언문과 함수 표현식](https://github.com/Hyerim926/Javascript-study/blob/main/02_%EC%8B%A4%ED%96%89%20%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/hoistingFunction.js) \
 함수 선언문은 코드가 길어지고 협업하는 경우, 중복 선언 시 디버깅이 어려워 상대적으로 안전한 함수 표현식을 사용하자.\
 전역공간에 함수를 선언하거나 동명의 함수를 중복 선언하는 경우는 없어야 함. 만약, 전역공간에 동명함수가 여럿 존재하는 상황에 모든 함수가 `함수 표현식`으로 정의된다면 이런 상황을 방지할 수 있음.
 
