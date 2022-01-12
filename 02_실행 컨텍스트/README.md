@@ -121,3 +121,29 @@ cf. 함수 선언문과 함수 표현식에서 배웠던 함수 선언문의 약
 함수 내부에서 선언한 변수. 예제코드에서는 outer() 내부에서 선언한 inner와 inner 함수 내부에서 선언한 변수 a
 ## ThisBinding
 실행 컨텍스트의 thisBinding에는 this로 지정된 객체가 저장되며, 실행 컨텍스트 활성화 당시에 this가 지정되지 않은 경우 this에는 전역 객체가 저장됨. 그 밖에는 함수 호출 방법에 따라 this에 저장되는 대상 다름.
+
+# 정리
+1. 실행 컨텍스트
+- 정의: 실행할 코드에 제공할 환경 정보들을 모아놓은 객체.
+- 분류: `전역 컨텍스트, eval` `함수 실행에 의한 컨텍스트`
+- 활성화 되는 시점
+    - `variableEnvironment` 초기 상태 유지
+    - `LexicalEnvironment` 함수 실행 도중 변경 사항 즉시 반영
+        - `environmentRecord` 매개변수명, 변수의 식별자, 선언 함수의 이름 등 수집
+        - `outerEnvironmentRecord` 바로 직전 컨텍스트의 LexicalEnvironment 정보 참조
+    - `ThisBinding` 정보 수집
+2. 호이스팅
+- 정의: `environmentRecord`의 수집 과정을 추상화한 것. 실행 컨텍스트가 관여하는 코드 집단의 최상단으로 끌어올림
+- 변수 선언과 할당을 동시에 할 경우 선언부만 호이스팅 됨
+- 함수 선언문의 경우 전체 호이스팅 되고, 함수 표현식의 경우 선언부만 호이스팅 됨
+3. 스코프
+- 정의: 변수의 유효범위. `outerEnvironmentReference`는 해당 함수가 선언된 위치의 `LexicalEnvironment`를 참조
+- 현재 컨텍스트의 Lexical이 발견되면 리턴함
+    - 발견되지 않으면 outerE.R에 담긴 Lexical 탐색함. 발견되면 리턴
+        - 발견되지 않으면 전역 컨텍스트의 Lexical 탐색함. 발견되면 리턴
+            - 발견되지 않으면 undefined
+4. 전역변수와 지역변수
+- 전역변수: LexicalEnvironment에 담긴 변수. 지양하자
+- 지역변수: 그 밖의 함수에 의해 생성된 실행 컨텍스트의 변수
+5. this
+실행 컨텍스트 활성화 당시 지정된 this를 저장. 함수 호출방법에 따라 값 변화. 지정하지 않으면 전역 객체에 저장됨
