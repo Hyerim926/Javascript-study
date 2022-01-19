@@ -93,3 +93,63 @@
   - 메서드 내부에서의 this [코드]()
     - this에는 호출한 주체에 대한 정보 담기며, 어떤 함수를 메서드로서 호출하는 경우 호출 주체는 바로 함수명(프로퍼티명)앞의 객체.\
       점 표기법의 경우 `마지막 점 앞에 명시된 객체`가 `this`
+3. 함수로서 호출할 때 그 함수 내부에서의 this
+- 함수 내부에서의 this
+    - 어떤 함수를 함수로서 호출할 경우에 this 지정 안함. 그래서, 함수에서의 this는 여전히 전역객체이며 이는 명백한 설계상의 오류임.
+- 메서드 내부함수에서의 this
+```javascript
+var obj1 = {
+    outer: function() {
+        console.log(this); // (1) obj1
+        var innerFunc = function() {
+            console.log(this); // (2) 전역객체(Window) (3) obj2
+        }
+        innerFunc();
+
+        var obj2 = {
+            innerMethod: innerFunc
+        };
+        obj2.innerMethod();
+    }
+}
+```
+    - (2)에서 전역객체가 바인딩된 이유는 innerFunc()를 함수로서 호출했기 때문
+    - (3)에서 obj2가 바인딩된 이유는 `.innerMethod()` 메서드로서 호출했기 때문
+- 메서드 내부 함수에서의 this를 우회하는 방법 `변수 활용하기`
+    - 호출 주체가 없을 때는 자동으로 전역객체를 바인딩하지 않고 호출 당시 주변 환경의 this를 그대로 상속받아 써보기
+    ```javascript
+    var obj = {
+        outer: function() {
+            console.log(this); // (1) { outer: f }
+            var innerFunc = function () {
+                console.log(this); // (2) Window { ... }
+            };
+            innerFunc();
+
+            var self = this; // 상위 스코프의 this를 저장해서 내부함수에서 활용함
+            var innerFunc2 = function () {
+                console.log(self); // (3) { outer: f }
+            };
+            innerFunc2();
+        }
+    };
+    obj.outer();
+    ```
+- this를 바인딩하지 않는 함수
+    - ES6에서 함수 내부에서 this가 전역객체를 바라보는 문제를 보완하고자, this를 바인딩하지 않는 `화살표 함수`를 새로 도입함.
+    - `화살표함수` 실행 컨텍스트를 생성할 때 this 바인딩 과정 자체가 빠지게 되어, 상위 스코프의 this를 그대로 활용 가능 -> 위의 우회법 불필요
+    ```javascript
+    var obj = {
+        outer: function () {
+            console.log(this); // { outer: f }
+            var innerFunc = () => {
+                console.log(this); // { outer: f }
+            };
+        innerFunc();
+        }
+    };
+    obj.outer();
+    ```
+    - 함수로서 호출된 `innerFunc()`에서 this가 `outer`로 바인딩된 것을 확인 가능
+    - 이외에도 `call` `apply` 등의 메서드를 활용해 함수를 호출할 때 명식적으로 this를 지정하는 방법 존재
+4. 콜백 함수 호출 시 그 함수 내부에서의 this
