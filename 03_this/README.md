@@ -82,12 +82,12 @@ console.log(d, window.d, this.d); // Uncaught ReferenceError: d is not defined
   var func = function(x){ // 익명함수 할당
     console.log(this, x);
   };
-  func(1); // 함수로서 호출, 전역객체 window 출력 Window {...} 1 
-  
+  func(1); // 함수로서 호출, 전역객체 window 출력 Window {...} 1
+
   var obj = {
     method: func
   };
-  
+
   obj.method(2); // 메서드로서 호출(객체 뒤 .으로 메서드 호출), { method: f } 2
   ```
     - 메서드로서 호출 - 점 표기법, 대괄호 표기법 (이외에는 모두 함수 호출법)
@@ -244,3 +244,13 @@ var obj = {
 };
 obj.method.apply({a: 4}, [5, 6]); // 4 5 6
 ```
+3. call/apply 메서드의 활용
+- 유사배열객체`array-like object`에 배열 메서드 적용 [코드]()
+    - 객체에는 배열 메서들 적용 불가
+    - 그러나 키가 `0` 또는 `양의 정수`인 프로퍼티가 존재하고 `length` 프로퍼티의 값이 0 또는 양의 정수인 객체 즉, 배열의 구조와 유사한 객체의 경우 `call` 또는 `apply` 메서드를 이용해 배열 메서드 차용가능
+    - 함수 내부에서 접근할 수 있는 arguments 객체도 유사배열객체이므로 위의 방법으로 배열로 전환해서 활용 가능. `querySelector` `getElementsByClassName` 등의 Node 선택자로 선택한 결과인 NodeList에 적용 가능
+    - 배열처럼 인덱스와 length 프로퍼티를 지니는 문자열에 적용 가능 단, length 프로퍼티가 읽기 전용이므로 원본 문자열에 변경 가능한 메서드(push, pop, shift, unshift, splice 등)는 에러를 던짐. concat도 결과 얻기 불가
+    - ES6에서 유사배열객체 또는 순회 가능한 모든 종류의 데이터 타입을 배열로 전환하는 `Array.from` 메서드 새로 도입
+- 생성자 내부에서 다른 생성자 호출
+    - 생성자 내부에 다른 생성자와 공통된 내용이 있을 경우 `call` 또는 `apply`를 이용해 다른 생성자를 호출하면 간단하게 반복 줄일 수 있음
+    - [예제]()
