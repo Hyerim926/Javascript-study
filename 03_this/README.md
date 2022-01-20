@@ -245,7 +245,7 @@ var obj = {
 obj.method.apply({a: 4}, [5, 6]); // 4 5 6
 ```
 3. call/apply 메서드의 활용
-- 유사배열객체`array-like object`에 배열 메서드 적용 [코드]()
+- 유사배열객체`array-like object`에 배열 메서드 적용 [코드](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/callApply.js)
     - 객체에는 배열 메서들 적용 불가
     - 그러나 키가 `0` 또는 `양의 정수`인 프로퍼티가 존재하고 `length` 프로퍼티의 값이 0 또는 양의 정수인 객체 즉, 배열의 구조와 유사한 객체의 경우 `call` 또는 `apply` 메서드를 이용해 배열 메서드 차용가능
     - 함수 내부에서 접근할 수 있는 arguments 객체도 유사배열객체이므로 위의 방법으로 배열로 전환해서 활용 가능. `querySelector` `getElementsByClassName` 등의 Node 선택자로 선택한 결과인 NodeList에 적용 가능
@@ -253,7 +253,7 @@ obj.method.apply({a: 4}, [5, 6]); // 4 5 6
     - ES6에서 유사배열객체 또는 순회 가능한 모든 종류의 데이터 타입을 배열로 전환하는 `Array.from` 메서드 새로 도입
 - 생성자 내부에서 다른 생성자 호출
     - 생성자 내부에 다른 생성자와 공통된 내용이 있을 경우 `call` 또는 `apply`를 이용해 다른 생성자를 호출하면 간단하게 반복 줄일 수 있음
-    - [예제]()
+    - [예제](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/insideConstructor.js)
 - 여러 인수를 묶어 하나의 배열로 전달하고 싶을 때 - apply 활용
 ```javascript
 // es5
@@ -270,16 +270,16 @@ const min = Math.min(...numbers); // 50 10
 4. bind 메서드
 - call과 비슷하지만 즉시 호출하지는 않고 넘겨받은 this 및 인수들을 바탕으로 새로운 함수를 반환하기만 하는 메서드
 - 함수에 this를 미리 적용하는 것과 부분 적용 함수를 구현하는 것 두 가지 목적을 지님
-- [코드]()
+- [코드](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/thisPartialFn.js)
 - name 프로퍼티
   - name 프로퍼티에 동사 bind의 수동태인 `bound`라는 접두어가 붙음
   - 원본 함수에 bind 메서드를 적용한 새로운 함수의 의미가 되어 코드 추적에 더 용이
-  - [코드]()
+  - [코드](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/nameProp.js)
 - 상위 컨텍스트의 this를 내부함수나 콜백 함수에 전달하기
   - self 등의 우회법 말고 call, apply 또는 bind를 이용해 더 깔끔하게 처리 가능
-  - [코드]()
-  - 콜백 함수를 인자로 받는 함수나 메서드 중에서 기본저긍로 콜백 함수 내에서 this에 관여하는 함수 또는 메서드에 대해서도 이용 가능
-  - [코드]()
+  - [코드](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/callvsBind.js)
+  - 콜백 함수를 인자로 받는 함수나 메서드 중에서 기본적으로 콜백 함수 내에서 this에 관여하는 함수 또는 메서드에 대해서도 이용 가능
+  - [코드](https://github.com/Hyerim926/Javascript-study/blob/main/03_this/thisToInner.js)
 5. 화살표 함수의 예외사항
 - ES6의 화살표 함수는 실행 컨텍스트 생성 시 this를 바인딩하는 과정이 제외됨. 접근하고자 하면 스코프체인상 가장 가까운 this에 접근함
 - 별도의 변수로 this를 우회하거나 call/apply/bind를 적용할 필요 없음
