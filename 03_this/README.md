@@ -254,3 +254,66 @@ obj.method.apply({a: 4}, [5, 6]); // 4 5 6
 - 생성자 내부에서 다른 생성자 호출
     - 생성자 내부에 다른 생성자와 공통된 내용이 있을 경우 `call` 또는 `apply`를 이용해 다른 생성자를 호출하면 간단하게 반복 줄일 수 있음
     - [예제]()
+- 여러 인수를 묶어 하나의 배열로 전달하고 싶을 때 - apply 활용
+```javascript
+// es5
+var numbers = [10, 20, 30, 40, 50];
+var max = Math.max.apply(null, numbers);
+var min = Math.min.apply(null, numbers);
+console.log(max, min); // 50 10
+
+// es6 - 펼치기 연산자
+const number = [10, 20, 30, 40, 50];
+const max = Math.max(...numbers);
+const min = Math.min(...numbers); // 50 10
+```
+4. bind 메서드
+- call과 비슷하지만 즉시 호출하지는 않고 넘겨받은 this 및 인수들을 바탕으로 새로운 함수를 반환하기만 하는 메서드
+- 함수에 this를 미리 적용하는 것과 부분 적용 함수를 구현하는 것 두 가지 목적을 지님
+- [코드]()
+- name 프로퍼티
+  - name 프로퍼티에 동사 bind의 수동태인 `bound`라는 접두어가 붙음
+  - 원본 함수에 bind 메서드를 적용한 새로운 함수의 의미가 되어 코드 추적에 더 용이
+  - [코드]()
+- 상위 컨텍스트의 this를 내부함수나 콜백 함수에 전달하기
+  - self 등의 우회법 말고 call, apply 또는 bind를 이용해 더 깔끔하게 처리 가능
+  - [코드]()
+  - 콜백 함수를 인자로 받는 함수나 메서드 중에서 기본저긍로 콜백 함수 내에서 this에 관여하는 함수 또는 메서드에 대해서도 이용 가능
+  - [코드]()
+5. 화살표 함수의 예외사항
+- ES6의 화살표 함수는 실행 컨텍스트 생성 시 this를 바인딩하는 과정이 제외됨. 접근하고자 하면 스코프체인상 가장 가까운 this에 접근함
+- 별도의 변수로 this를 우회하거나 call/apply/bind를 적용할 필요 없음
+```javascript
+var obj = {
+    outer: function () {
+        console.log(this);
+        var innerFunc = () => {
+            console.log(this);
+        };
+        innerFunc();
+    }
+};
+obj.outer();
+```
+6. 별도의 인자로 this를 받는 경우(콜백 함수 내에서의 this)
+- 콜백 함수를 인자로 받는 메서드 중 일부는 추가로 this로 지정할 객체 `thisArg`를 인자로 지정할 수 있음
+- 배열 메서드에 많이 사용됨 (Set, Map 등)
+```javascript
+// forEach 메서드
+var report = {
+    sum: 0,
+    count: 0,
+    add: function () {
+        var args = Array.prototype.slice.call(arguments);
+        args.forEach(function (entry) {
+            this.sum += entry;
+            ++this.count;
+        }, this);
+    },
+    average: function () {
+        return this.sum / this.count;
+    }
+};
+report.add(60, 85, 95);
+console.log(report.sum, report.count, report.average()); // 240 3 80
+```
