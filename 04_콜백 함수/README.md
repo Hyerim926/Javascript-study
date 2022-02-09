@@ -258,18 +258,18 @@ setTimeout(addEspresso, 500, '에스프레소');
 ```
 3-2. 해결 - 비동기 작업의 동기적 표현
 - `ES6`에서 `Promise` `Generator` 등이 도입
-- `ES8`에서 `async / await` 이 도입
-[Promise(1)]()
+- `ES8`에서 `async / await` 이 도입\
+[Promise(1)](https://github.com/Hyerim926/Javascript-study/blob/main/04_%EC%BD%9C%EB%B0%B1%20%ED%95%A8%EC%88%98/promise1.js)
 - `new` 연산자와 함께 호출한 `Promise`의 인자로 넘겨주는 콜백 함수는 호출할 때 바로 실행
-- 함수 내부에 `resolve` 또는 `reject`함수를 호출하는 구문이 있을 경우 둘 중 하나가 실행되기 전까지는 `then` 또는 `catch`로 넘어가지 않음
-[Promise(2)]()
-- 반복적인 내용을 함수화하여 더욱 짧게 표현
-[Generator]()
+- 함수 내부에 `resolve` 또는 `reject`함수를 호출하는 구문이 있을 경우 둘 중 하나가 실행되기 전까지는 `then` 또는 `catch`로 넘어가지 않음\
+[Promise(2)](https://github.com/Hyerim926/Javascript-study/blob/main/04_%EC%BD%9C%EB%B0%B1%20%ED%95%A8%EC%88%98/promise2.js)
+- 반복적인 내용을 함수화하여 더욱 짧게 표현\
+[Generator](https://github.com/Hyerim926/Javascript-study/blob/main/04_%EC%BD%9C%EB%B0%B1%20%ED%95%A8%EC%88%98/generator.js)
 - ES6의 Generator 이용
 - `*`가 붙은 함수가 `Generator`
 - 함수 실행 시 Iterator 반환되고 Iterator는 next라는 메서드를 가지고 있음
 - `next` 메서드를 호출하면 Generator 함수 내부에서 가장 먼저 등장하는 `yield`에서 함수의 실행을 멈춤. 이후 `next`도 마찬가지로 계속 진행
-- 비동기 작업이 완료되는 시점마다 `next` 메서드를 호출하면 `Generator` 함수 내부의 소스가 `위에서부터 아래로` 순차적으로 진행됨
-[Promise + Async/Await]()
+- 비동기 작업이 완료되는 시점마다 `next` 메서드를 호출하면 `Generator` 함수 내부의 소스가 `위에서부터 아래로` 순차적으로 진행됨\
+[Promise + Async/Await](https://github.com/Hyerim926/Javascript-study/blob/main/04_%EC%BD%9C%EB%B0%B1%20%ED%95%A8%EC%88%98/asyncAwait.js)
 - 비동기 작업을 수행하고자 하는 함수 앞에 `async` 표기, 함수 내부에서 실질적인 비동기 작업이 필요한 위치마다 `await` 표기
 - `await` 뒤의 내용이 Promise로 자동 전환, 해당 내용이 `resolve`된 이후에야 다음으로 진행
